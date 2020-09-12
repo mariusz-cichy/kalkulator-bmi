@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kalkulator BMI</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/c3.css') }}">
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <form action="/" method="post" role="form">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8 text-center bg-secondary text-light">
+                <h3>Kalkulator BMI</h3>
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8 pt-1 pb-1 text-center border border-secondary">
+                <div class="form-group row">
+                    <label for="wzrost" class="col-2 col-form-label">Wzrost</label>
+                    <div class="col-10">
+                        <input type="number" class="form-control text-right" id="wzrost" name="wzrost" min="50" max="250"
+                               value="{{ wzrost }}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="waga" class="col-2 col-form-label">Waga</label>
+                    <div class="col-10">
+                        <input type="number" class="form-control text-right" id="waga" name="waga" min="1" max="250"
+                               value="{{ waga }}">
+                    </div>
+                </div>
+                <div id="chart"></div>
+                <h4>{{ bmi_slownie }}</h4>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 25%"></div>
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%"></div>
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 25%"></div>
+                    <div class="progress-bar bg-danger" role="progressbar" style="width: 25%"></div>
+                </div>
+                <div class="row">
+                    <div class="col-3"><= 18.4<br>Niedowaga</div>
+                    <div class="col-3">18.5 - 24.9<br>Waga normalna</div>
+                    <div class="col-3">25.0 - 29.9<br>Nadwaga</div>
+                    <div class="col-3">>= 30<br>Otyłość</div>
+                </div>
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8 bg-secondary pt-1 pb-1">
+                <button type='submit' class="btn btn-dark float-right">Oblicz</button>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="{{ url_for('static', filename='js/c3.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/chart_gauge.js') }}"></script>
+<script>
+    chart.load({
+        columns: [['BMI', {{ bmi_liczbowo }}]]
+    });
+</script>
+</body>
+</html>
