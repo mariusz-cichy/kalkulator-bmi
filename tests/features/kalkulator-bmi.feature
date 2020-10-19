@@ -9,15 +9,15 @@ Właściwość: Kalkulator obliczający wskaźnik masy ciała (BMI)
     Zakładając że uruchomiłem aplikację
 
   Szablon scenariusza: Obliczanie wskaźnika BMI
-    Jeżeli na stronie aplikacji wpiszę <WZROST> w pole wzrost
-    I wpiszę <WAGA> w pole waga
+    Jeżeli na stronie aplikacji wpiszę <WZROST>
+    I wpiszę <WAGA>
     I nacisnę przycisk Oblicz
-    Wtedy powinienem zobaczyć <BMI_LICZBOWO > jako wartość numeryczną BMI
-    I <BMI_SŁOWNIE> jako kategorię przedziału BMI
+    Wtedy zobaczę wynik numerycznie: <BMI_NUMERYCZNIE>
+    Oraz zobaczę wynik słownie: <BMI_SŁOWNIE>
 
   Przykłady:
-    |WZROST |WAGA |BMI_LICZBOWO |BMI_SŁOWNIE  |
-    |170    |50   |17.3         |Niedowaga    |
-    |181    |80   |24.4         |Waga normalna|
-    |180    |90   |27.8         |Nadwaga      |
-    |175    |100  |32.7         |Otyłość      |
+    |WZROST |WAGA |BMI_NUMERYCZNIE |BMI_SŁOWNIE  |
+    |170    |50   |17.3            |Niedowaga    |
+    |181    |80   |24.4            |Waga normalna|
+    |180    |90   |27.8            |Nadwaga      |
+    |175    |100  |32.7            |Otyłość      |

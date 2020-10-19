@@ -1,53 +1,39 @@
-from lettuce import step, world
+from time import sleep
+
+from behave import *
+from hamcrest import *
+from selenium.webdriver.common.keys import *
+
+use_step_matcher("re")
 
 
 @step("że uruchomiłem aplikację")
-def step_impl(step_instance):
-    """
-    :type step_instance: lettuce.core.Step
-    """
-    raise NotImplementedError(u'STEP: Zakładając że uruchomiłem aplikację')
+def step_impl(context):
+    context.driver.get("http://18.197.162.204")
+    sleep(4)
 
 
-@step("na stronie aplikacji wpiszę (?P<WZROST>.+) w pole wzrost")
-def step_impl(step_instance, WZROST):
-    """
-    :type step_instance: lettuce.core.Step
-    :type WZROST: str
-    """
-    raise NotImplementedError(u'STEP: Jeżeli na stronie aplikacji wpiszę <WZROST> w pole wzrost')
+@step("na stronie aplikacji wpiszę (?P<WZROST>.+)")
+def step_impl(context, WZROST):
+    raise NotImplementedError(u'STEP: Jeżeli na stronie aplikacji wpiszę <WZROST>')
 
 
-@step("wpiszę (?P<WAGA>.+) w pole waga")
-def step_impl(step_instance, WAGA):
-    """
-    :type step_instance: lettuce.core.Step
-    :type WAGA: str
-    """
-    raise NotImplementedError(u'STEP: I wpiszę <WAGA> w pole waga')
+@step("wpiszę (?P<WAGA>.+)")
+def step_impl(context, WAGA):
+    raise NotImplementedError(u'STEP: I wpiszę <WAGA>')
 
 
 @step("nacisnę przycisk Oblicz")
-def step_impl(step_instance):
-    """
-    :type step_instance: lettuce.core.Step
-    """
+def step_impl(context):
     raise NotImplementedError(u'STEP: I nacisnę przycisk Oblicz')
 
 
-@step("powinienem zobaczyć (.+) jako wartość numeryczną BMI")
-def step_impl(step_instance, arg0):
-    """
-    :type step_instance: lettuce.core.Step
-    :type arg0: str
-    """
-    raise NotImplementedError(u'STEP: Wtedy powinienem zobaczyć <BMI_LICZBOWO > jako wartość numeryczną BMI')
+@step("zobaczę wynik numerycznie: (?P<BMI_NUMERYCZNIE>.+)")
+def step_impl(context, BMI_NUMERYCZNIE):
+    actual_result = context.driver.find_element_by_xpath("//*[name()='svg']//*[name()='text' and @class='c3-gauge-value']").text
+    assert_that(actual_result, equal_to(BMI_NUMERYCZNIE))
 
 
-@step("(.+) jako kategorię przedziału BMI")
-def step_impl(step_instance, arg0):
-    """
-    :type step_instance: lettuce.core.Step
-    :type arg0: str
-    """
-    raise NotImplementedError(u'STEP: I <BMI_SŁOWNIE> jako kategorię przedziału BMI')
+@step("zobaczę wynik słownie: (?P<BMI_SLOWNIE>.+)")
+def step_impl(context, BMI_SLOWNIE):
+    raise NotImplementedError(u'STEP: Oraz zobaczę wynik słownie: <BMI_SŁOWNIE>')
