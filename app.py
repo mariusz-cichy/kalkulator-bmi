@@ -30,7 +30,7 @@ def bmi(waga: int, wzrost: int):
 
 
 @app.route('/', methods=['GET', 'POST'])
-def hello_world():
+def index():
     if request.method == 'GET':
         wzrost = "176"
         waga = "75"
