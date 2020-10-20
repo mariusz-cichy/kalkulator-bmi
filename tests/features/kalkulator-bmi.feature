@@ -21,3 +21,9 @@ Właściwość: Kalkulator obliczający wskaźnik masy ciała (BMI)
     |181    |80   |24.4            |Waga normalna|
     |180    |90   |27.8            |Nadwaga      |
     |175    |100  |32.7            |Otyłość      |
+
+
+
+
+
+
