@@ -6,4 +6,4 @@ phases:
   pre_build:
     commands:
       - pip install -r requirements.txt
-      - python tests/kalkulator-bmi-unit-test.py
+      - python -m tests.kalkulator-bmi-unit-test

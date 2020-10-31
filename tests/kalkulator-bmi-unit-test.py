@@ -8,7 +8,6 @@ class KalkulatorBMITest(unittest.TestCase):
         response = tester.get('/')
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'Kalkulator BMI', response.data)
-        self.assertEqual()
 
 if __name__ == '__main__':
     unittest.main()
