@@ -1,4 +1,4 @@
-#language: pl
+# language: pl
 
 Właściwość: Kalkulator obliczający wskaźnik masy ciała (BMI)
   Jako trener osobisty

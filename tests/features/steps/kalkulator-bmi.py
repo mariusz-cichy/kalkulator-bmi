@@ -1,7 +1,7 @@
+from time import sleep
+
 from behave import *
 from hamcrest import *
-from selenium.webdriver.common.keys import *
-from time import sleep
 
 use_step_matcher("re")
 
@@ -9,7 +9,6 @@ use_step_matcher("re")
 @step("że uruchomiłem aplikację")
 def step_impl(context):
     context.driver.get("http://18.197.162.204")
-    sleep(4)
 
 
 @step("na stronie aplikacji wpiszę (?P<WZROST>.+)")
@@ -42,4 +41,5 @@ def step_impl(context, BMI_NUMERYCZNIE):
 def step_impl(context, BMI_SLOWNIE):
     actual_result = context.driver.find_element_by_xpath('//h4').text
     assert_that(actual_result, equal_to(BMI_SLOWNIE))
+    sleep(3)
 
