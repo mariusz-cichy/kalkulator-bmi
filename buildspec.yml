@@ -8,7 +8,8 @@ phases:
       - pip install -r requirements.txt
       - python -m tests.kalkulator-bmi-unit-test
       - echo $DOCKERHUB_NAME
-      - docker login -u ${DOCKERHUB_USERNAME} -p ${DOCKERHUB_PASSWORD}
+      - echo $DOCKERHUB_PASSWORD
+      - echo ${DOCKERHUB_PASSWORD} | docker login --username ${DOCKERHUB_NAME} foo --password-stdin
   build:
     commands:
       - echo Build started on `date`
