@@ -1,4 +1,4 @@
-FROM python:alpine3.7
+FROM python:3.8
 COPY ./static /app/static
 COPY ./templates /app/templates
 COPY app.py /app
