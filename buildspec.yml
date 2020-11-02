@@ -1,3 +1,9 @@
+# Wersja dla Docker Hub
+# Wymaga zmiennych środowiskowych:
+# DOCKER_NAME = emcea
+# DOCKER_PASSWORD = ....
+# IMAGE_REPO_NAME = kalkulator-bmi
+# IMAGE_TAG = latest
 version: 0.2
 phases:
   install:
@@ -7,20 +13,52 @@ phases:
     commands:
       - pip install -r requirements.txt
       - python -m tests.kalkulator-bmi-unit-test
-      - echo $AWS_USER_NAME
-      - echo $AWS_DEFAULT_REGION
-      - echo $AWS_ACCOUNT_ID
-      - echo Logging in to GitHub...
-      - echo $GITHUB_PASSWORD | docker login --username $GITHUB_NAME --password-stdin
+      - echo $DOCKER_NAME
+      - echo $IMAGE_REPO_NAME
+      - echo $IMAGE_TAG
+      - echo Logging in to Docker Hub...
+      - echo $DOCKER_PASSWORD | docker login --username $DOCKER_NAME --password-stdin
 
   build:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
-      - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $IMAGE_REPO_NAME:$IMAGE_TAG
+      - docker build -t $DOCKER_NAME/$IMAGE_REPO_NAME:$IMAGE_TAG .
+      - docker tag $DOCKER_NAME/$IMAGE_REPO_NAME:$IMAGE_TAG $DOCKER_NAME/$IMAGE_REPO_NAME:$IMAGE_TAG
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push $IMAGE_REPO_NAME:$IMAGE_TAG
+      - docker push $DOCKER_NAME/$IMAGE_REPO_NAME:$IMAGE_TAG
+
+# Wersja dla AWS ECR
+# Wymaga zmiennych środowiskowych:
+# AWS_USER_NAME = mcichy
+# AWS_DEFAULT_REGION = eu-central-1
+# AWS_ACCOUNT_ID = 639254566553
+#version: 0.2
+#phases:
+#  install:
+#    runtime-versions:
+#      python: 3.8
+#  pre_build:
+#    commands:
+#      - pip install -r requirements.txt
+#      - python -m tests.kalkulator-bmi-unit-test
+#      - echo $AWS_USER_NAME
+#      - echo $AWS_DEFAULT_REGION
+#      - echo $AWS_ACCOUNT_ID
+#      - echo Logging in to Amazon ECR...
+#      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+#
+#  build:
+#    commands:
+#      - echo Build started on `date`
+#      - echo Building the Docker image...
+#      - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
+#      - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $IMAGE_REPO_NAME:$IMAGE_TAG
+#  post_build:
+#    commands:
+#      - echo Build completed on `date`
+#      - echo Pushing the Docker image...
+#      - docker push $IMAGE_REPO_NAME:$IMAGE_TAG
