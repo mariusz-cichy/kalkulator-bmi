@@ -14,6 +14,8 @@ Właściwość: Kalkulator obliczający wskaźnik masy ciała (BMI)
     I nacisnę przycisk Oblicz
     Wtedy zobaczę wynik numerycznie: <BMI_NUMERYCZNIE>
     Oraz zobaczę wynik słownie: <BMI_SŁOWNIE>
+    I zobaczę stan konta
+    I wyświetlę stan konta
 
   Przykłady:
     |WZROST |WAGA |BMI_NUMERYCZNIE |BMI_SŁOWNIE  |

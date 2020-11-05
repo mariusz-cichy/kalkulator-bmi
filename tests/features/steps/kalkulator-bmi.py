@@ -43,3 +43,6 @@ def step_impl(context, BMI_SLOWNIE):
     assert_that(actual_result, equal_to(BMI_SLOWNIE))
     sleep(3)
 
+@step(".* stan konta")
+def step_impl(context):
+    pass
